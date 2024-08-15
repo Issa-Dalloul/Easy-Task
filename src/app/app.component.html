@@ -1,0 +1,21 @@
+<app-header />
+<link
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<main>
+  <ul id="users" class="list-group">
+    @for (user of users;track user.id){
+       <li list-group-item>
+      <app-user [user]="user" [selected]="user.id === selectedUserId"    (select)="onSelectUser($event)" />
+    </li>
+  }
+  </ul>
+@if(selectedUser){
+  <app-tasks [userId]="selectedUser.id"   [name]="selectedUser.name" />
+}@else {
+  <p id="fallback">Select a user to see their tasks!</p>
+}
+
+
+</main>
